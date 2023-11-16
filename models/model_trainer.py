@@ -14,8 +14,10 @@ import torch
 import numpy as np
 from torch.utils.data import DataLoader
 from datasets.digits import Digits
+from datasets.cifar10 import CIFAR10
 
 from vae.vae import VAE
+from diffussion.ddpm import DDPM
 
 from tqdm import tqdm
 
@@ -38,6 +40,8 @@ class ModelTrainer():
     def load_dataset(self):
         if self.dataset == 'digits':
             self.dataset = Digits(mode='train')
+        if self.dataset == 'cifar10':
+            self.dataset = CIFAR10(root=os.path.expanduser("~/datasets"), mode='train')
 
     def init_optim(self):
         if self.optimizer == 'adam':
@@ -50,6 +54,8 @@ class ModelTrainer():
         pbar = tqdm(range(self.epochs), desc="Epoch", position=0)
         for epoch in pbar:
 
+            #TODO: Use a stats tracker
+            # - Must be refactored to account for different models
             epoch_store = {
                 'loss':[],
                 'elbo':[],
@@ -60,7 +66,8 @@ class ModelTrainer():
             data_loader = DataLoader(self.dataset, batch_size=self.batch_size, shuffle=True)
 
             for mb in tqdm(data_loader, desc="Batch", position=1, leave=False):
-                
+                print('batch size', mb.size())
+          
                 res_dict = self.model(mb)
                 loss_dict:torch.Tensor = self.model.loss(res_dict, mb)
 
@@ -91,11 +98,37 @@ class ModelTrainer():
 
 if __name__ == '__main__':
 
-    config = {
+    # config = {
+    #     "model":"vae",
 
-        "dataset":"digits",
-        "num_epochs":500,
-        "batch_size":100,
+    #     "dataset":"digits",
+        
+    #     "num_epochs":500,
+    #     "batch_size":100,
+    #     "learning_rate":1e-3,
+    #     "lr_scheduler":None,
+    #     "optimzer":"adam",
+
+    #     "data_distribution":'categorical',
+    #     "data_dims":64,
+    #     'num_classes':17
+    # }
+
+    # model = VAE(config)
+
+    config = {
+        "model":"ddpm",
+
+        "dataset":"cifar10",
+
+        #ddpm
+        "timesteps":1000,
+        "beta_end": 0.02,
+        "beta_start": 0.0001,
+        "beta_scheduler":'linear',
+        
+        "num_epochs":50,
+        "batch_size":128,
         "learning_rate":1e-3,
         "lr_scheduler":None,
         "optimzer":"adam",
@@ -105,8 +138,7 @@ if __name__ == '__main__':
         'num_classes':17
     }
 
-    model = VAE(config)
-
+    model = DDPM(config)
     trainer = ModelTrainer(config, model=model)
     trainer.train_model()
 
