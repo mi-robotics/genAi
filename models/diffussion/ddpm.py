@@ -23,7 +23,7 @@ class BetaScheduler():
         self.sqrt_one_minus_alpha_bars = torch.sqrt(1. - self.alpha_bars) #encoder std
 
         #for sampling the posterior encoder q(x_t-1 | x_t, x_0)
-        self.alpha_bar_prevs = torch.cat(torch.Tensor([1.0,]), self.alpha_bars[:-1])
+        self.alpha_bar_prevs = torch.cat([torch.Tensor([1.0,]), self.alpha_bars[:-1]])
         self.sqrt_alpha_bar_prevs = torch.sqrt(self.alpha_bar_prevs)
         self.one_minus_alpha_bar_prevs = 1.0 - self.alpha_bar_prevs
 
@@ -67,35 +67,44 @@ class BetaScheduler():
         """
         return self.betas[t]
     
+    def get_alphas(self, t):
+        """
+        t -> [batch_size]
+        """
+        return self.alphas[t]
+    
     def get_sqrt_alpha_bars(self, t):
         """
         t -> [batch_size]
         """
-        return self.sqrt_alpha_bars[t]
+        return self.sqrt_alpha_bars[t].to(torch.float32)
     
     def get_alpha_bars(self, t):
         """
         t -> [batch_size]
         """
-        return self.alpha_bars[t]
+        return self.alpha_bars[t].to(torch.float32)
     
     def get_sqrt_one_minus_alpha_bars(self, t):
         """
         t -> [batch_size]
         """
-        return self.sqrt_one_minus_alpha_bars[t]
+        return self.sqrt_one_minus_alpha_bars[t].to(torch.float32)
     
     def get_one_minus_alpha_bars(self, t):
         """
         t -> [batch_size]
         """
-        return self.one_minus_alpha_bars[t]
+        return self.one_minus_alpha_bars[t].to(torch.float32)
  
     def get_posterior_coeficients(self, t) -> tuple[torch.Tensor, torch.Tensor, torch.Tensor]:
-        return self.mu_coef_x0s[t], self.mu_coes_xts[t], self.var_coefs[t]
+        return self.mu_coef_x0s[t].to(torch.float32), \
+                self.mu_coes_xts[t].to(torch.float32), \
+                self.var_coefs[t].to(torch.float32)
     
-    def get_incerve_noising_coeficients(self, t) -> tuple[torch.Tensor, torch.Tensor]:
-        return self.sqrt_recip_alphas_bar[t], self.sqrt_recip_m1_alphas_bar[t]
+    def get_incerse_noising_coeficients(self, t) -> tuple[torch.Tensor, torch.Tensor]:
+        return self.sqrt_recip_alphas_bar[t].to(torch.float32), \
+                self.sqrt_recip_m1_alphas_bar[t].to(torch.float32)
 
 
 
@@ -107,11 +116,12 @@ class DDPM(torch.nn.Module):
     def __init__(self, config):
         super().__init__()
 
-        self.model_config = config['model_config']
+        self.config = config
         self._init_model()
         self.model_var_type = config['model_var_type']
         self.timesteps = config['timesteps']
         self.loss_type = config['loss_type']
+
         self.vdm_type = config['vdm_type'] # see https://arxiv.org/pdf/2208.11970.pdf
         self.beta_sched = BetaScheduler(config['beta_start'], config['beta_end'], config['beta_scheduler'], self.timesteps)
         
@@ -120,8 +130,8 @@ class DDPM(torch.nn.Module):
 
         # for fixed model_var_type's -> we assume the decoder variance is equal to the decoder
         self.fixed_model_var, self.fixed_model_logvar = {
-            "fixed-large": (self.betas, torch.log(torch.cat([self.posterior_var[[1]], self.betas[1:]]))),
-            "fixed-small": (self.posterior_var, self.posterior_logvar_clipped)
+            "fixed-large": (self.beta_sched.betas, torch.log(torch.cat([self.beta_sched.var_coefs[[1]], self.beta_sched.betas[1:]]))),
+            "fixed-small": (self.beta_sched.var_coefs, self.beta_sched.var_coefs)
         }[self.model_var_type]
 
         # Clipping the Images dimension 
@@ -129,13 +139,14 @@ class DDPM(torch.nn.Module):
 
         return
     
+    # INITIALIZERS -----------------------------------
+    
     def _init_model(self):
-        if self.model_config['network'] == 'unet':
-            self.net = UNet(**self.model_config)
+        if self.config['network'] == 'unet':
+            self.net = UNet(**self.config['unet'])
         else:
             raise 'Not Implimented - Network Architecture'
         return
-    
 
     def forward(self, x):
         #configure the imputs to the network
@@ -145,12 +156,14 @@ class DDPM(torch.nn.Module):
         #get noised inputs from the forward diffussion process
         x_t = self._sample_q_t(input_dict)
 
-        #I want to remove this if possible
         if self.loss_type == "mse":
+            print(x_t.size(), x_t.dtype)
+            print(t.size(), t.dtype)
+            
             model_out = self.net.forward(x_t, t)
 
-        input_dict.update('x_t',x_t)
-        input_dict.update('preds', model_out)
+        input_dict.update({'x_t':x_t})
+        input_dict.update({'preds': model_out})
 
         return input_dict
     
@@ -188,7 +201,7 @@ class DDPM(torch.nn.Module):
         else:
             raise "Not Implimented - Loss Method"
 
-        return loss
+        return {'loss':loss}
     
 
     def _kl_loss(self, input_dict):
@@ -198,7 +211,6 @@ class DDPM(torch.nn.Module):
         t = 0: negative log likelihood of decoder, -\log p(x_0 | x_1)
         t > 0: variational lower bound loss term, KL term
         """
-        #TODO: i dont fully understand this 
         true_dist = self._sample_q_t_prev(input_dict) #{mus, vars, samples}
         model_mean, model_var, model_log_var = self._p_mean_var(input_dict)
 
@@ -223,7 +235,7 @@ class DDPM(torch.nn.Module):
             "x_0": x,
             "t": torch.empty((x.shape[0],), dtype=torch.int64).random_(
                 to=self.timesteps, generator=self.generator), #sample uniform from [0, timesteps] -> [batch_size]
-            "noise": torch.randn(*x.size() ,generator=self.generator).size() #sample gaussian -> [batch_size, channels, im_w, im_h]
+            "noise": torch.randn(*x.size() ,generator=self.generator) #sample gaussian -> [batch_size, channels, im_w, im_h]
         }
         
 
@@ -236,8 +248,8 @@ class DDPM(torch.nn.Module):
             - alpha_bar
         q(x_t|x_0) = n(x_t; sqrt(alpha_bar)x_0, (1-alpha_bar)I)
         """
-        data_dims = input_dict['x_0'].ndims
-        x_0 = input_dict['X_0']
+        data_dims = input_dict['x_0'].ndim
+        x_0 = input_dict['x_0']
         noise = input_dict['noise']
 
         #get the distribution paramters for each timestep
@@ -349,14 +361,14 @@ class DDPM(torch.nn.Module):
 
     
 
-    # PREDICTION HELPERS ---------------------------------------
+    # X_0 PREDICTION HELPERS ---------------------------------------
 
     def _predict_x_0_form_noise(self, x_t, t, noise):
         """
         given the nosie - and x_t, this is the inreverse of the diffusion process
         """
         #TODO i dont understand this must go over
-        coef1, coef2 = self.beta_sched.get_incerve_noising_coeficients(t)
+        coef1, coef2 = self.beta_sched.get_incerse_noising_coeficients(t)
 
         coef1 = coef1.reshape((-1,) + (1, ) * (x_t.ndims - 1))
         coef2 = coef2.reshape((-1,) + (1, ) * (x_t.ndims - 1))
@@ -364,3 +376,10 @@ class DDPM(torch.nn.Module):
         pred_x_0 = coef1 * x_t - coef2 * noise
 
         return pred_x_0
+    
+
+    # SAMPLING -------------------------------------------------------
+
+    def p_sample(self):
+
+        return 

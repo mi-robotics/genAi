@@ -1,8 +1,9 @@
 import math
 import torch
 import torch.nn as nn
-from modules import Linear, Conv2d, SamePad2d, Sequential
-from functions import get_timestep_embedding
+from networks.modules import Linear, Conv2d, SamePad2d, Sequential
+from networks.functions import get_timestep_embedding
+
 # try:
 #     from ..functions import get_timestep_embedding
 #     from ..modules import Linear, Conv2d, SamePad2d, Sequential
@@ -108,6 +109,7 @@ class UNet(nn.Module):
             resample_with_conv=True
     ):
         super(UNet, self).__init__()
+
         self.in_channels = in_channels
         self.hid_channels = hid_channels
         self.out_channels = out_channels
@@ -142,6 +144,8 @@ class UNet(nn.Module):
             self.nonlinearity,
             Conv2d(hid_channels, out_channels, 3, 1, 1, init_scale=0.)
         )
+
+    
 
     def _get_block_by_level(self, level):
         block_kwargs = {"embed_dim": self.time_embedding_dim, "drop_rate": self.drop_rate}

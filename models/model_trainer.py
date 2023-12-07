@@ -15,6 +15,8 @@ import numpy as np
 from torch.utils.data import DataLoader
 from datasets.digits import Digits
 from datasets.cifar10 import CIFAR10
+from utils.ema import EMA
+from utils.modelCheckpoint import Checkpoint
 
 from vae.vae import VAE
 from diffussion.ddpm import DDPM
@@ -26,26 +28,40 @@ class ModelTrainer():
     def __init__(self, config, model):
 
         self.model:torch.nn.Module = model
+        self.ema = EMA(self.model) if config['use_ema'] else None
+        self.lr_scheduler = None #TODO: not implimented
+
         self.dataset = config['dataset']
         self.epochs = config['num_epochs']
         self.batch_size = config['batch_size']
         self.learning_rate = config['learning_rate']
         self.lr_scheduler = config['lr_scheduler']
         self.optimizer = config['optimzer']
-        self.load_dataset()
-        self.init_optim()
+
+        self._init_dataset()
+        self._init_optim()
+        self._init_scheduler()
+
+        self.checkpoint = Checkpoint(config, self._get_stated_moduels())
 
         return
     
-    def load_dataset(self):
+    def _init_dataset(self):
         if self.dataset == 'digits':
             self.dataset = Digits(mode='train')
         if self.dataset == 'cifar10':
             self.dataset = CIFAR10(root=os.path.expanduser("~/datasets"), mode='train')
 
-    def init_optim(self):
+    def _init_scheduler(self):
+        self.lr_scheduler = None
+
+    def _init_optim(self):
         if self.optimizer == 'adam':
             self.optimizer = torch.optim.Adam(params=self.model.parameters(), lr=self.learning_rate)
+
+    def _get_stated_moduels(self):
+        mods = [self.model, self.lr_scheduler, self.optimizer, self.ema]
+        return [x for x in mods if x is not None]
 
     
     def train_model(self):
@@ -74,6 +90,9 @@ class ModelTrainer():
                 self.optimizer.zero_grad()
                 loss_dict['loss'].backward()
                 self.optimizer.step()
+
+                print("got here safely")
+                quit()
 
                 epoch_store['loss'].append(loss_dict['loss'].detach())
                 epoch_store['elbo'].append(loss_dict['elbo'].detach())
@@ -118,24 +137,45 @@ if __name__ == '__main__':
 
     config = {
         "model":"ddpm",
-
         "dataset":"cifar10",
+
+        #Tracking
+        "use_wandb":False,
+        "project_name":"ddpm-experiments",
+        "experiment_name":None,
+        "use_ema":True,
+        "ema_decay":None,
+        "track_values":{
+            "loss":None
+        },
 
         #ddpm
         "timesteps":1000,
         "beta_end": 0.02,
         "beta_start": 0.0001,
         "beta_scheduler":'linear',
-        
+
+        "model_var_type":"fixed-small",
+        "vdm_type":"noise",
+        "loss_type":"mse",
+
         "num_epochs":50,
         "batch_size":128,
         "learning_rate":1e-3,
         "lr_scheduler":None,
         "optimzer":"adam",
 
-        "data_distribution":'categorical',
-        "data_dims":64,
-        'num_classes':17
+        #unet params
+        "network":'unet',
+        'unet':{
+            "in_channels": 3,
+            "hid_channels": 128,
+            "out_channels": 3,
+            "ch_multipliers": [1, 2, 2, 2],
+            "num_res_blocks": 2,
+            "apply_attn": [False, True, False, False],
+            "drop_rate": 0.1
+        }
     }
 
     model = DDPM(config)

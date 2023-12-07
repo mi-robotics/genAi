@@ -1,0 +1,198 @@
+2023-11-20 17:58:52,263 INFO    StreamThr :5830 [internal.py:wandb_internal():86] W&B internal server running at pid: 5830, started at: 2023-11-20 17:58:52.263361
+2023-11-20 17:58:52,264 DEBUG   HandlerThread:5830 [handler.py:handle_request():146] handle_request: status
+2023-11-20 17:58:52,266 INFO    WriterThread:5830 [datastore.py:open_for_write():85] open: /Users/milo/Documents/AI/genAi/utils/wandb/run-20231120_175852-5i52p5fo/run-5i52p5fo.wandb
+2023-11-20 17:58:52,266 DEBUG   SenderThread:5830 [sender.py:send():380] send: header
+2023-11-20 17:58:52,279 DEBUG   SenderThread:5830 [sender.py:send():380] send: run
+2023-11-20 17:58:52,680 INFO    SenderThread:5830 [dir_watcher.py:__init__():211] watching files in: /Users/milo/Documents/AI/genAi/utils/wandb/run-20231120_175852-5i52p5fo/files
+2023-11-20 17:58:52,680 INFO    SenderThread:5830 [sender.py:_start_run_threads():1124] run started: 5i52p5fo with start time 1700503132.264454
+2023-11-20 17:58:52,683 DEBUG   HandlerThread:5830 [handler.py:handle_request():146] handle_request: check_version
+2023-11-20 17:58:52,684 DEBUG   SenderThread:5830 [sender.py:send_request():407] send_request: check_version
+2023-11-20 17:58:52,731 DEBUG   HandlerThread:5830 [handler.py:handle_request():146] handle_request: run_start
+2023-11-20 17:58:52,736 DEBUG   HandlerThread:5830 [system_info.py:__init__():32] System info init
+2023-11-20 17:58:52,736 DEBUG   HandlerThread:5830 [system_info.py:__init__():47] System info init done
+2023-11-20 17:58:52,736 INFO    HandlerThread:5830 [system_monitor.py:start():194] Starting system monitor
+2023-11-20 17:58:52,736 INFO    SystemMonitor:5830 [system_monitor.py:_start():158] Starting system asset monitoring threads
+2023-11-20 17:58:52,736 INFO    HandlerThread:5830 [system_monitor.py:probe():214] Collecting system info
+2023-11-20 17:58:52,737 INFO    SystemMonitor:5830 [interfaces.py:start():190] Started cpu monitoring
+2023-11-20 17:58:52,737 DEBUG   HandlerThread:5830 [system_info.py:probe():196] Probing system
+2023-11-20 17:58:52,738 INFO    SystemMonitor:5830 [interfaces.py:start():190] Started disk monitoring
+2023-11-20 17:58:52,739 INFO    SystemMonitor:5830 [interfaces.py:start():190] Started gpuapple monitoring
+2023-11-20 17:58:52,740 INFO    SystemMonitor:5830 [interfaces.py:start():190] Started memory monitoring
+2023-11-20 17:58:52,741 INFO    SystemMonitor:5830 [interfaces.py:start():190] Started network monitoring
+2023-11-20 17:58:52,744 DEBUG   HandlerThread:5830 [system_info.py:_probe_git():181] Probing git
+2023-11-20 17:58:52,755 DEBUG   HandlerThread:5830 [system_info.py:_probe_git():189] Probing git done
+2023-11-20 17:58:52,756 DEBUG   HandlerThread:5830 [system_info.py:probe():244] Probing system done
+2023-11-20 17:58:52,756 DEBUG   HandlerThread:5830 [system_monitor.py:probe():223] {'os': 'macOS-14.0-arm64-arm-64bit', 'python': '3.11.5', 'heartbeatAt': '2023-11-20T17:58:52.737601', 'startedAt': '2023-11-20T17:58:52.260881', 'docker': None, 'cuda': None, 'args': (), 'state': 'running', 'program': '/Users/milo/Documents/AI/genAi/utils/modelStats.py', 'codePathLocal': 'modelStats.py', 'codePath': 'utils/modelStats.py', 'git': {'remote': 'git@github.com:mi-robotics/genAi.git', 'commit': 'f9caeff76f84a47c2000f69d278084576009afd7'}, 'email': None, 'root': '/Users/milo/Documents/AI/genAi', 'host': '192.168.1.133', 'username': 'milo', 'executable': '/Users/milo/miniconda3/envs/AI/bin/python', 'cpu_count': 10, 'cpu_count_logical': 10, 'disk': {'/': {'total': 138.1298828125, 'used': 97.83999633789062}}, 'gpuapple': {'type': 'arm', 'vendor': 'Apple'}, 'memory': {'total': 16.0}}
+2023-11-20 17:58:52,756 INFO    HandlerThread:5830 [system_monitor.py:probe():224] Finished collecting system info
+2023-11-20 17:58:52,756 INFO    HandlerThread:5830 [system_monitor.py:probe():227] Publishing system info
+2023-11-20 17:58:52,756 DEBUG   HandlerThread:5830 [system_info.py:_save_pip():52] Saving list of pip packages installed into the current environment
+2023-11-20 17:58:52,756 DEBUG   HandlerThread:5830 [system_info.py:_save_pip():68] Saving pip packages done
+2023-11-20 17:58:52,756 DEBUG   HandlerThread:5830 [system_info.py:_save_conda():75] Saving list of conda packages installed into the current environment
+2023-11-20 17:58:53,686 INFO    Thread-12 :5830 [dir_watcher.py:_on_file_created():271] file/dir created: /Users/milo/Documents/AI/genAi/utils/wandb/run-20231120_175852-5i52p5fo/files/conda-environment.yaml
+2023-11-20 17:58:53,686 INFO    Thread-12 :5830 [dir_watcher.py:_on_file_created():271] file/dir created: /Users/milo/Documents/AI/genAi/utils/wandb/run-20231120_175852-5i52p5fo/files/requirements.txt
+2023-11-20 17:58:55,145 DEBUG   HandlerThread:5830 [system_info.py:_save_conda():87] Saving conda packages done
+2023-11-20 17:58:55,146 INFO    HandlerThread:5830 [system_monitor.py:probe():229] Finished publishing system info
+2023-11-20 17:58:55,151 DEBUG   SenderThread:5830 [sender.py:send():380] send: files
+2023-11-20 17:58:55,151 INFO    SenderThread:5830 [sender.py:_save_file():1380] saving file wandb-metadata.json with policy now
+2023-11-20 17:58:55,154 DEBUG   SenderThread:5830 [sender.py:send():380] send: telemetry
+2023-11-20 17:58:55,154 DEBUG   HandlerThread:5830 [handler.py:handle_request():146] handle_request: stop_status
+2023-11-20 17:58:55,155 DEBUG   HandlerThread:5830 [handler.py:handle_request():146] handle_request: internal_messages
+2023-11-20 17:58:55,155 DEBUG   SenderThread:5830 [sender.py:send_request():407] send_request: stop_status
+2023-11-20 17:58:55,155 DEBUG   HandlerThread:5830 [handler.py:handle_request():146] handle_request: partial_history
+2023-11-20 17:58:55,155 DEBUG   HandlerThread:5830 [handler.py:handle_request():146] handle_request: partial_history
+2023-11-20 17:58:55,156 DEBUG   HandlerThread:5830 [handler.py:handle_request():146] handle_request: partial_history
+2023-11-20 17:58:55,330 DEBUG   SenderThread:5830 [sender.py:send():380] send: history
+2023-11-20 17:58:55,330 DEBUG   SenderThread:5830 [sender.py:send_request():407] send_request: summary_record
+2023-11-20 17:58:55,331 INFO    SenderThread:5830 [sender.py:_save_file():1380] saving file wandb-summary.json with policy end
+2023-11-20 17:58:55,331 DEBUG   SenderThread:5830 [sender.py:send():380] send: history
+2023-11-20 17:58:55,331 DEBUG   SenderThread:5830 [sender.py:send_request():407] send_request: summary_record
+2023-11-20 17:58:55,331 INFO    SenderThread:5830 [sender.py:_save_file():1380] saving file wandb-summary.json with policy end
+2023-11-20 17:58:55,332 DEBUG   SenderThread:5830 [sender.py:send():380] send: history
+2023-11-20 17:58:55,332 DEBUG   SenderThread:5830 [sender.py:send_request():407] send_request: summary_record
+2023-11-20 17:58:55,332 INFO    SenderThread:5830 [sender.py:_save_file():1380] saving file wandb-summary.json with policy end
+2023-11-20 17:58:55,332 DEBUG   SenderThread:5830 [sender.py:send():380] send: telemetry
+2023-11-20 17:58:55,332 DEBUG   SenderThread:5830 [sender.py:send():380] send: exit
+2023-11-20 17:58:55,332 INFO    SenderThread:5830 [sender.py:send_exit():585] handling exit code: 0
+2023-11-20 17:58:55,332 INFO    SenderThread:5830 [sender.py:send_exit():587] handling runtime: 2
+2023-11-20 17:58:55,333 INFO    SenderThread:5830 [sender.py:_save_file():1380] saving file wandb-summary.json with policy end
+2023-11-20 17:58:55,333 INFO    SenderThread:5830 [sender.py:send_exit():593] send defer
+2023-11-20 17:58:55,333 DEBUG   HandlerThread:5830 [handler.py:handle_request():146] handle_request: defer
+2023-11-20 17:58:55,333 INFO    HandlerThread:5830 [handler.py:handle_request_defer():172] handle defer: 0
+2023-11-20 17:58:55,333 DEBUG   SenderThread:5830 [sender.py:send_request():407] send_request: defer
+2023-11-20 17:58:55,333 INFO    SenderThread:5830 [sender.py:send_request_defer():609] handle sender defer: 0
+2023-11-20 17:58:55,333 INFO    SenderThread:5830 [sender.py:transition_state():613] send defer: 1
+2023-11-20 17:58:55,333 DEBUG   HandlerThread:5830 [handler.py:handle_request():146] handle_request: defer
+2023-11-20 17:58:55,333 INFO    HandlerThread:5830 [handler.py:handle_request_defer():172] handle defer: 1
+2023-11-20 17:58:55,333 DEBUG   SenderThread:5830 [sender.py:send_request():407] send_request: defer
+2023-11-20 17:58:55,333 INFO    SenderThread:5830 [sender.py:send_request_defer():609] handle sender defer: 1
+2023-11-20 17:58:55,333 INFO    SenderThread:5830 [sender.py:transition_state():613] send defer: 2
+2023-11-20 17:58:55,333 DEBUG   HandlerThread:5830 [handler.py:handle_request():146] handle_request: defer
+2023-11-20 17:58:55,333 INFO    HandlerThread:5830 [handler.py:handle_request_defer():172] handle defer: 2
+2023-11-20 17:58:55,333 INFO    HandlerThread:5830 [system_monitor.py:finish():203] Stopping system monitor
+2023-11-20 17:58:55,333 DEBUG   SystemMonitor:5830 [system_monitor.py:_start():172] Starting system metrics aggregation loop
+2023-11-20 17:58:55,333 INFO    HandlerThread:5830 [interfaces.py:finish():202] Joined cpu monitor
+2023-11-20 17:58:55,333 DEBUG   SystemMonitor:5830 [system_monitor.py:_start():179] Finished system metrics aggregation loop
+2023-11-20 17:58:55,333 INFO    HandlerThread:5830 [interfaces.py:finish():202] Joined disk monitor
+2023-11-20 17:58:55,333 DEBUG   SystemMonitor:5830 [system_monitor.py:_start():183] Publishing last batch of metrics
+2023-11-20 17:58:55,333 INFO    HandlerThread:5830 [interfaces.py:finish():202] Joined gpuapple monitor
+2023-11-20 17:58:55,334 INFO    HandlerThread:5830 [interfaces.py:finish():202] Joined memory monitor
+2023-11-20 17:58:55,334 INFO    HandlerThread:5830 [interfaces.py:finish():202] Joined network monitor
+2023-11-20 17:58:55,334 DEBUG   SenderThread:5830 [sender.py:send_request():407] send_request: defer
+2023-11-20 17:58:55,334 INFO    SenderThread:5830 [sender.py:send_request_defer():609] handle sender defer: 2
+2023-11-20 17:58:55,334 INFO    SenderThread:5830 [sender.py:transition_state():613] send defer: 3
+2023-11-20 17:58:55,334 DEBUG   SenderThread:5830 [sender.py:send():380] send: telemetry
+2023-11-20 17:58:55,334 DEBUG   SenderThread:5830 [sender.py:send():380] send: stats
+2023-11-20 17:58:55,334 DEBUG   HandlerThread:5830 [handler.py:handle_request():146] handle_request: defer
+2023-11-20 17:58:55,334 INFO    HandlerThread:5830 [handler.py:handle_request_defer():172] handle defer: 3
+2023-11-20 17:58:55,334 DEBUG   SenderThread:5830 [sender.py:send_request():407] send_request: defer
+2023-11-20 17:58:55,334 INFO    SenderThread:5830 [sender.py:send_request_defer():609] handle sender defer: 3
+2023-11-20 17:58:55,334 INFO    SenderThread:5830 [sender.py:transition_state():613] send defer: 4
+2023-11-20 17:58:55,334 DEBUG   HandlerThread:5830 [handler.py:handle_request():146] handle_request: defer
+2023-11-20 17:58:55,334 INFO    HandlerThread:5830 [handler.py:handle_request_defer():172] handle defer: 4
+2023-11-20 17:58:55,334 DEBUG   SenderThread:5830 [sender.py:send_request():407] send_request: defer
+2023-11-20 17:58:55,334 INFO    SenderThread:5830 [sender.py:send_request_defer():609] handle sender defer: 4
+2023-11-20 17:58:55,334 INFO    SenderThread:5830 [sender.py:transition_state():613] send defer: 5
+2023-11-20 17:58:55,334 DEBUG   HandlerThread:5830 [handler.py:handle_request():146] handle_request: defer
+2023-11-20 17:58:55,334 INFO    HandlerThread:5830 [handler.py:handle_request_defer():172] handle defer: 5
+2023-11-20 17:58:55,335 DEBUG   SenderThread:5830 [sender.py:send():380] send: summary
+2023-11-20 17:58:55,335 INFO    SenderThread:5830 [sender.py:_save_file():1380] saving file wandb-summary.json with policy end
+2023-11-20 17:58:55,335 DEBUG   SenderThread:5830 [sender.py:send_request():407] send_request: defer
+2023-11-20 17:58:55,335 INFO    SenderThread:5830 [sender.py:send_request_defer():609] handle sender defer: 5
+2023-11-20 17:58:55,335 INFO    SenderThread:5830 [sender.py:transition_state():613] send defer: 6
+2023-11-20 17:58:55,335 DEBUG   HandlerThread:5830 [handler.py:handle_request():146] handle_request: defer
+2023-11-20 17:58:55,335 INFO    HandlerThread:5830 [handler.py:handle_request_defer():172] handle defer: 6
+2023-11-20 17:58:55,335 DEBUG   SenderThread:5830 [sender.py:send_request():407] send_request: defer
+2023-11-20 17:58:55,335 INFO    SenderThread:5830 [sender.py:send_request_defer():609] handle sender defer: 6
+2023-11-20 17:58:55,336 DEBUG   HandlerThread:5830 [handler.py:handle_request():146] handle_request: status_report
+2023-11-20 17:58:55,486 INFO    SenderThread:5830 [sender.py:transition_state():613] send defer: 7
+2023-11-20 17:58:55,486 DEBUG   HandlerThread:5830 [handler.py:handle_request():146] handle_request: defer
+2023-11-20 17:58:55,486 INFO    HandlerThread:5830 [handler.py:handle_request_defer():172] handle defer: 7
+2023-11-20 17:58:55,487 DEBUG   SenderThread:5830 [sender.py:send_request():407] send_request: defer
+2023-11-20 17:58:55,487 INFO    SenderThread:5830 [sender.py:send_request_defer():609] handle sender defer: 7
+2023-11-20 17:58:55,661 INFO    wandb-upload_0:5830 [upload_job.py:push():131] Uploaded file /var/folders/0q/f_2rkcxd3px4wh0730kxc4jr0000gn/T/tmpz6b69c5awandb/f0mkauez-wandb-metadata.json
+2023-11-20 17:58:55,695 INFO    Thread-12 :5830 [dir_watcher.py:_on_file_modified():288] file/dir modified: /Users/milo/Documents/AI/genAi/utils/wandb/run-20231120_175852-5i52p5fo/files/conda-environment.yaml
+2023-11-20 17:58:55,695 INFO    Thread-12 :5830 [dir_watcher.py:_on_file_modified():288] file/dir modified: /Users/milo/Documents/AI/genAi/utils/wandb/run-20231120_175852-5i52p5fo/files/config.yaml
+2023-11-20 17:58:55,696 INFO    Thread-12 :5830 [dir_watcher.py:_on_file_created():271] file/dir created: /Users/milo/Documents/AI/genAi/utils/wandb/run-20231120_175852-5i52p5fo/files/wandb-summary.json
+2023-11-20 17:58:55,696 INFO    Thread-12 :5830 [dir_watcher.py:_on_file_created():271] file/dir created: /Users/milo/Documents/AI/genAi/utils/wandb/run-20231120_175852-5i52p5fo/files/wandb-metadata.json
+2023-11-20 17:58:55,696 INFO    Thread-12 :5830 [dir_watcher.py:_on_file_created():271] file/dir created: /Users/milo/Documents/AI/genAi/utils/wandb/run-20231120_175852-5i52p5fo/files/output.log
+2023-11-20 17:58:56,161 DEBUG   HandlerThread:5830 [handler.py:handle_request():146] handle_request: poll_exit
+2023-11-20 17:58:57,338 INFO    SenderThread:5830 [sender.py:transition_state():613] send defer: 8
+2023-11-20 17:58:57,338 DEBUG   SenderThread:5830 [sender.py:send_request():407] send_request: poll_exit
+2023-11-20 17:58:57,339 DEBUG   HandlerThread:5830 [handler.py:handle_request():146] handle_request: defer
+2023-11-20 17:58:57,339 INFO    HandlerThread:5830 [handler.py:handle_request_defer():172] handle defer: 8
+2023-11-20 17:58:57,339 DEBUG   SenderThread:5830 [sender.py:send_request():407] send_request: defer
+2023-11-20 17:58:57,339 INFO    SenderThread:5830 [sender.py:send_request_defer():609] handle sender defer: 8
+2023-11-20 17:58:57,340 INFO    SenderThread:5830 [job_builder.py:build():298] Attempting to build job artifact
+2023-11-20 17:58:57,341 INFO    SenderThread:5830 [job_builder.py:_get_source_type():428] is repo sourced job
+2023-11-20 17:58:57,366 INFO    SenderThread:5830 [job_builder.py:build():404] adding wandb-job metadata file
+2023-11-20 17:58:57,368 INFO    SenderThread:5830 [sender.py:transition_state():613] send defer: 9
+2023-11-20 17:58:57,368 DEBUG   HandlerThread:5830 [handler.py:handle_request():146] handle_request: defer
+2023-11-20 17:58:57,368 DEBUG   SenderThread:5830 [sender.py:send():380] send: artifact
+2023-11-20 17:58:57,368 INFO    HandlerThread:5830 [handler.py:handle_request_defer():172] handle defer: 9
+2023-11-20 17:58:57,700 INFO    Thread-12 :5830 [dir_watcher.py:_on_file_modified():288] file/dir modified: /Users/milo/Documents/AI/genAi/utils/wandb/run-20231120_175852-5i52p5fo/files/output.log
+2023-11-20 17:58:58,097 INFO    SenderThread:5830 [sender.py:send_artifact():1458] sent artifact job-git_github.com_mi-robotics_genAi.git_utils_modelStats.py - {'id': 'QXJ0aWZhY3Q6NjQzOTI5MjEw', 'state': 'COMMITTED', 'artifactSequence': {'id': 'QXJ0aWZhY3RDb2xsZWN0aW9uOjExNzI5ODUyMw==', 'latestArtifact': {'id': 'QXJ0aWZhY3Q6NjQzOTI5MjEw', 'versionIndex': 0}}}
+2023-11-20 17:58:58,097 DEBUG   SenderThread:5830 [sender.py:send_request():407] send_request: defer
+2023-11-20 17:58:58,097 INFO    SenderThread:5830 [sender.py:send_request_defer():609] handle sender defer: 9
+2023-11-20 17:58:58,097 INFO    SenderThread:5830 [dir_watcher.py:finish():358] shutting down directory watcher
+2023-11-20 17:58:58,168 DEBUG   HandlerThread:5830 [handler.py:handle_request():146] handle_request: poll_exit
+2023-11-20 17:58:58,706 INFO    SenderThread:5830 [dir_watcher.py:finish():388] scan: /Users/milo/Documents/AI/genAi/utils/wandb/run-20231120_175852-5i52p5fo/files
+2023-11-20 17:58:58,707 INFO    SenderThread:5830 [dir_watcher.py:finish():402] scan save: /Users/milo/Documents/AI/genAi/utils/wandb/run-20231120_175852-5i52p5fo/files/requirements.txt requirements.txt
+2023-11-20 17:58:58,707 INFO    SenderThread:5830 [dir_watcher.py:finish():402] scan save: /Users/milo/Documents/AI/genAi/utils/wandb/run-20231120_175852-5i52p5fo/files/output.log output.log
+2023-11-20 17:58:58,709 INFO    SenderThread:5830 [dir_watcher.py:finish():402] scan save: /Users/milo/Documents/AI/genAi/utils/wandb/run-20231120_175852-5i52p5fo/files/config.yaml config.yaml
+2023-11-20 17:58:58,710 INFO    SenderThread:5830 [dir_watcher.py:finish():402] scan save: /Users/milo/Documents/AI/genAi/utils/wandb/run-20231120_175852-5i52p5fo/files/wandb-summary.json wandb-summary.json
+2023-11-20 17:58:58,712 INFO    SenderThread:5830 [dir_watcher.py:finish():402] scan save: /Users/milo/Documents/AI/genAi/utils/wandb/run-20231120_175852-5i52p5fo/files/conda-environment.yaml conda-environment.yaml
+2023-11-20 17:58:58,715 INFO    SenderThread:5830 [dir_watcher.py:finish():402] scan save: /Users/milo/Documents/AI/genAi/utils/wandb/run-20231120_175852-5i52p5fo/files/wandb-metadata.json wandb-metadata.json
+2023-11-20 17:58:58,715 INFO    SenderThread:5830 [sender.py:transition_state():613] send defer: 10
+2023-11-20 17:58:58,715 DEBUG   SenderThread:5830 [sender.py:send_request():407] send_request: poll_exit
+2023-11-20 17:58:58,716 DEBUG   HandlerThread:5830 [handler.py:handle_request():146] handle_request: defer
+2023-11-20 17:58:58,717 INFO    HandlerThread:5830 [handler.py:handle_request_defer():172] handle defer: 10
+2023-11-20 17:58:58,718 DEBUG   SenderThread:5830 [sender.py:send_request():407] send_request: defer
+2023-11-20 17:58:58,718 INFO    SenderThread:5830 [sender.py:send_request_defer():609] handle sender defer: 10
+2023-11-20 17:58:58,719 INFO    SenderThread:5830 [file_pusher.py:finish():175] shutting down file pusher
+2023-11-20 17:58:59,036 INFO    wandb-upload_1:5830 [upload_job.py:push():131] Uploaded file /Users/milo/Documents/AI/genAi/utils/wandb/run-20231120_175852-5i52p5fo/files/output.log
+2023-11-20 17:58:59,092 INFO    wandb-upload_0:5830 [upload_job.py:push():131] Uploaded file /Users/milo/Documents/AI/genAi/utils/wandb/run-20231120_175852-5i52p5fo/files/requirements.txt
+2023-11-20 17:58:59,113 INFO    wandb-upload_2:5830 [upload_job.py:push():131] Uploaded file /Users/milo/Documents/AI/genAi/utils/wandb/run-20231120_175852-5i52p5fo/files/config.yaml
+2023-11-20 17:58:59,114 INFO    wandb-upload_3:5830 [upload_job.py:push():131] Uploaded file /Users/milo/Documents/AI/genAi/utils/wandb/run-20231120_175852-5i52p5fo/files/wandb-summary.json
+2023-11-20 17:58:59,120 INFO    wandb-upload_4:5830 [upload_job.py:push():131] Uploaded file /Users/milo/Documents/AI/genAi/utils/wandb/run-20231120_175852-5i52p5fo/files/conda-environment.yaml
+2023-11-20 17:58:59,173 DEBUG   HandlerThread:5830 [handler.py:handle_request():146] handle_request: poll_exit
+2023-11-20 17:58:59,173 DEBUG   SenderThread:5830 [sender.py:send_request():407] send_request: poll_exit
+2023-11-20 17:58:59,321 INFO    Thread-11 (_thread_body):5830 [sender.py:transition_state():613] send defer: 11
+2023-11-20 17:58:59,321 DEBUG   HandlerThread:5830 [handler.py:handle_request():146] handle_request: defer
+2023-11-20 17:58:59,321 INFO    HandlerThread:5830 [handler.py:handle_request_defer():172] handle defer: 11
+2023-11-20 17:58:59,322 DEBUG   SenderThread:5830 [sender.py:send_request():407] send_request: defer
+2023-11-20 17:58:59,322 INFO    SenderThread:5830 [sender.py:send_request_defer():609] handle sender defer: 11
+2023-11-20 17:58:59,322 INFO    SenderThread:5830 [file_pusher.py:join():181] waiting for file pusher
+2023-11-20 17:58:59,322 INFO    SenderThread:5830 [sender.py:transition_state():613] send defer: 12
+2023-11-20 17:58:59,322 DEBUG   HandlerThread:5830 [handler.py:handle_request():146] handle_request: defer
+2023-11-20 17:58:59,322 INFO    HandlerThread:5830 [handler.py:handle_request_defer():172] handle defer: 12
+2023-11-20 17:58:59,322 DEBUG   SenderThread:5830 [sender.py:send_request():407] send_request: defer
+2023-11-20 17:58:59,322 INFO    SenderThread:5830 [sender.py:send_request_defer():609] handle sender defer: 12
+2023-11-20 17:58:59,322 INFO    SenderThread:5830 [file_stream.py:finish():595] file stream finish called
+2023-11-20 17:58:59,464 INFO    SenderThread:5830 [file_stream.py:finish():599] file stream finish is done
+2023-11-20 17:58:59,464 INFO    SenderThread:5830 [sender.py:transition_state():613] send defer: 13
+2023-11-20 17:58:59,465 DEBUG   HandlerThread:5830 [handler.py:handle_request():146] handle_request: defer
+2023-11-20 17:58:59,465 INFO    HandlerThread:5830 [handler.py:handle_request_defer():172] handle defer: 13
+2023-11-20 17:58:59,465 DEBUG   SenderThread:5830 [sender.py:send_request():407] send_request: defer
+2023-11-20 17:58:59,465 INFO    SenderThread:5830 [sender.py:send_request_defer():609] handle sender defer: 13
+2023-11-20 17:58:59,466 INFO    SenderThread:5830 [sender.py:transition_state():613] send defer: 14
+2023-11-20 17:58:59,466 DEBUG   HandlerThread:5830 [handler.py:handle_request():146] handle_request: defer
+2023-11-20 17:58:59,466 DEBUG   SenderThread:5830 [sender.py:send():380] send: final
+2023-11-20 17:58:59,466 INFO    HandlerThread:5830 [handler.py:handle_request_defer():172] handle defer: 14
+2023-11-20 17:58:59,466 DEBUG   SenderThread:5830 [sender.py:send():380] send: footer
+2023-11-20 17:58:59,467 DEBUG   SenderThread:5830 [sender.py:send_request():407] send_request: defer
+2023-11-20 17:58:59,467 INFO    SenderThread:5830 [sender.py:send_request_defer():609] handle sender defer: 14
+2023-11-20 17:58:59,467 DEBUG   HandlerThread:5830 [handler.py:handle_request():146] handle_request: poll_exit
+2023-11-20 17:58:59,468 DEBUG   SenderThread:5830 [sender.py:send_request():407] send_request: poll_exit
+2023-11-20 17:58:59,468 DEBUG   HandlerThread:5830 [handler.py:handle_request():146] handle_request: internal_messages
+2023-11-20 17:58:59,469 DEBUG   HandlerThread:5830 [handler.py:handle_request():146] handle_request: server_info
+2023-11-20 17:58:59,469 DEBUG   HandlerThread:5830 [handler.py:handle_request():146] handle_request: get_summary
+2023-11-20 17:58:59,469 DEBUG   HandlerThread:5830 [handler.py:handle_request():146] handle_request: sampled_history
+2023-11-20 17:58:59,469 DEBUG   SenderThread:5830 [sender.py:send_request():407] send_request: server_info
+2023-11-20 17:58:59,470 DEBUG   HandlerThread:5830 [handler.py:handle_request():146] handle_request: job_info
+2023-11-20 17:58:59,586 DEBUG   SenderThread:5830 [sender.py:send_request():407] send_request: job_info
+2023-11-20 17:58:59,586 DEBUG   HandlerThread:5830 [handler.py:handle_request():146] handle_request: shutdown
+2023-11-20 17:58:59,586 INFO    HandlerThread:5830 [handler.py:finish():866] shutting down handler
+2023-11-20 17:59:00,476 INFO    WriterThread:5830 [datastore.py:close():294] close: /Users/milo/Documents/AI/genAi/utils/wandb/run-20231120_175852-5i52p5fo/run-5i52p5fo.wandb
+2023-11-20 17:59:00,586 INFO    SenderThread:5830 [sender.py:finish():1536] shutting down sender
+2023-11-20 17:59:00,586 INFO    SenderThread:5830 [file_pusher.py:finish():175] shutting down file pusher
+2023-11-20 17:59:00,586 INFO    SenderThread:5830 [file_pusher.py:join():181] waiting for file pusher

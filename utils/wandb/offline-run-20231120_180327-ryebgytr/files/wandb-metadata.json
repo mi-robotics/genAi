@@ -1,0 +1,37 @@
+{
+    "os": "macOS-14.0-arm64-arm-64bit",
+    "python": "3.11.5",
+    "heartbeatAt": "2023-11-20T18:03:27.820437",
+    "startedAt": "2023-11-20T18:03:27.799079",
+    "docker": null,
+    "cuda": null,
+    "args": [],
+    "state": "running",
+    "program": "/Users/milo/Documents/AI/genAi/utils/modelStats.py",
+    "codePathLocal": "modelStats.py",
+    "codePath": "utils/modelStats.py",
+    "git": {
+        "remote": "git@github.com:mi-robotics/genAi.git",
+        "commit": "f9caeff76f84a47c2000f69d278084576009afd7"
+    },
+    "email": null,
+    "root": "/Users/milo/Documents/AI/genAi",
+    "host": "192.168.1.133",
+    "username": "milo",
+    "executable": "/Users/milo/miniconda3/envs/AI/bin/python",
+    "cpu_count": 10,
+    "cpu_count_logical": 10,
+    "disk": {
+        "/": {
+            "total": 138.1298828125,
+            "used": 97.82352447509766
+        }
+    },
+    "gpuapple": {
+        "type": "arm",
+        "vendor": "Apple"
+    },
+    "memory": {
+        "total": 16.0
+    }
+}
